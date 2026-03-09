@@ -1,15 +1,17 @@
-- name: Pip Upload
-  # You may pin to the exact commit or the version.
-  # uses: onichandame/pip-upload-action@e4ff4fbd944075793e8168d2da47e017a887ae39
-  uses: onichandame/pip-upload-action@0.0.2
-  with:
-    # file containing dependencies (accepted by pip install -r) -- use NONE if you do not need to install dependencies
-    deps_list: # default is requirements.txt
-    # setup script
-    setup: # default is setup.py
-    # pip username
-    username: # default is __token__
-    # pip password
-    password: 
-    # path of git repo relative to GITHUB_WORKSPACE (no trailing slash)
-    path: # default is
+name: Simple Echo
+
+on:
+  push:
+    branches:
+      - main   # run when code is pushed to main branch
+  workflow_dispatch:   # allows manual trigger
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Echo message
+        run: echo "Hello World from GitHub Actions!"
